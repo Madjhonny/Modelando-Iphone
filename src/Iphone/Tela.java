@@ -3,6 +3,8 @@ package Iphone;
 public class Tela {
     public static void main(String[] args) {
 
+        // INSTANCIADNO A CLASSE
+
         Musica musica = new Musica();
         musica.escolherMusica();
 
