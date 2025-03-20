@@ -5,50 +5,39 @@ import java.util.Scanner;
 public class Musica {
 
     public void escolherMusica() {
-
         Scanner scanner = new Scanner(System.in);
+        String musicaSelecionada = "";
 
-        String musicaA = "A";
-        String musicaB = "B";
-        String musicaC = "C";
+        while (true) {
+            try {
+                System.out.println("Escolha sua música: A, B ou C");
+                musicaSelecionada = scanner.nextLine().toUpperCase();
 
-        System.out.print("Escolha sua música (A, B e C): ");
-        String musicaSelecionada = scanner.nextLine().toUpperCase();
+                if (!musicaSelecionada.equals("A") && !musicaSelecionada.equals("B") && !musicaSelecionada.equals("C")) {
+                    throw new IllegalArgumentException("Entrada inválida! Escolha apenas: A, B ou C.");
+                }
+                break; // Sai do loop quando a entrada for válida
 
-        if(musicaSelecionada.equals("A")) {
-
-            System.out.println("Música " + musicaA + " selecionada!");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
-        else if(musicaSelecionada.equals("B")) {
-
-            System.out.println("Música " + musicaB + " selecionada!");
-        }
-
-        else {
-
-            System.out.println("Música " + musicaC + " selecionada!");
-
-        }
-
-        tocarMusica(scanner, musicaSelecionada);
-
-
+        System.out.println("Música " + musicaSelecionada + " selecionada!");
+            tocarMusica(scanner, musicaSelecionada); // Chama o método para tocar música
     }
 
-
     public void tocarMusica(Scanner scanner, String musica) {
-        System.out.println("Tocando música " + musica + ". . .");
+        System.out.println("Tocando música " + musica + "...");
 
-        int tempoMusica = 180;
+        int tempoMusica = 180; // Reduzi para testes; pode ser 180 segundos
         boolean tocando = true;
 
-        while(tempoMusica > 0 && tocando) {
-
+        while (tempoMusica > 0 && tocando) {
             System.out.println("🎵 Tocando... (" + tempoMusica + " segundos restantes)");
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1000); // Pausa por 1 segundo
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -61,22 +50,17 @@ public class Musica {
                 if (comando.equalsIgnoreCase("p")) {
                     System.out.println("⏸ Música pausada.");
                     tocando = false;
-
                 }
-
-
-
             }
-
-
         }
-
 
         if (tempoMusica == 0) {
             System.out.println("🎵 Música finalizada!");
-
         }
-
     }
 
+    public static void main(String[] args) {
+        Musica musica = new Musica();
+        musica.escolherMusica();
+    }
 }
