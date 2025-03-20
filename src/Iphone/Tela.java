@@ -2,6 +2,8 @@ package Iphone;
 
 public class Tela {
     public static void main(String[] args) {
+
+        // INSTANCIANDO A CLASSE MUSICA
         Musica musica = new Musica();
         musica.escolherMusica();
 
